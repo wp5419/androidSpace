@@ -14,7 +14,8 @@
         android:orientation="horizontal"
         android:layout_below="@+id/password"
         android:gravity="center_horizontal"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:id="@+id/buttonLayout">
         <Button
             android:id="@+id/login"
             android:layout_width="wrap_content"
@@ -26,12 +27,28 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="取消"
-            android:id="@+id/button"
+            android:id="@+id/cancle"
             android:layout_below="@+id/password"
             android:layout_centerHorizontal="true"
             android:layout_toRightOf="@+id/login"
             />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/clear"
+            android:layout_below="@+id/password"
+            android:text="清空"
+            android:layout_toRightOf="@+id/clear"/>
     </LinearLayout>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/buttonLayout"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/weather"
+        android:text="天气"
+        android:onClick="onWeatherClick"
+        />
     <EditText
         android:id="@+id/username"
         android:layout_width="match_parent"
