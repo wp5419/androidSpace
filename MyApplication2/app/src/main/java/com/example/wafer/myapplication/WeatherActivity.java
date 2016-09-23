@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import com.api.global.GlobalParam;
 
+import org.json.JSONObject;
 import org.xutils.common.Callback;
 import org.xutils.http.RequestParams;
 import org.xutils.x;
@@ -26,6 +27,8 @@ public class WeatherActivity extends Activity {
         x.http().get(rp, new Callback.CommonCallback<String>() {
             @Override
             public void onSuccess(String result) {
+                //JSONObject json = new JSONObject(result);
+
                 System.out.print(result);
             }
 
