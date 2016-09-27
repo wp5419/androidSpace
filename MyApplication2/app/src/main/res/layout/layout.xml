@@ -47,7 +47,7 @@
         android:layout_centerHorizontal="true"
         android:id="@+id/weather"
         android:text="天气"
-        android:onClick="onWeatherClick"
+
         />
     <EditText
         android:id="@+id/username"
