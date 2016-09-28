@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.app.model.FileInfo;
 import com.example.wafer.myapplication.R;
@@ -23,7 +24,9 @@ import java.util.Map;
 public class MyAdapter extends BaseAdapter {
     private LayoutInflater inFlater;
     private List<FileInfo> itemList;
+    private Context context;
     public MyAdapter(Context context, List<FileInfo> itemList){
+        this.context = context;
         this.inFlater = LayoutInflater.from(context);
         this.itemList = itemList;
     }
@@ -62,6 +65,7 @@ public class MyAdapter extends BaseAdapter {
         holder.upLoader.setText(itemList.get(position).getUpLoader());
         holder.fileName.setText(itemList.get(position).getFileName());
         holder.fileSize.setText(itemList.get(position).getSize());
+        holder.image.setOnClickListener(new ImageListener());
         x.image().bind(holder.image, itemList.get(position).getFileUrl());
         return convertView;
     }
@@ -73,5 +77,12 @@ public class MyAdapter extends BaseAdapter {
         public TextView fileSize;
         public TextView fileName;
         public ImageView image;
+    }
+    public class  ImageListener implements View.OnClickListener {
+
+        @Override
+        public void onClick(View v) {
+            Toast.makeText(context,"图片点击", Toast.LENGTH_LONG).show();
+        }
     }
 }
