@@ -14,7 +14,7 @@ public class FileInfo implements Serializable {
     private String fileName;
     private String size;
     private String fileUrl;
-    private String fielId;
+    private String fileId;
 
     public String getUpLoader() {
         return upLoader;
@@ -64,12 +64,12 @@ public class FileInfo implements Serializable {
         this.fileUrl = fileUrl;
     }
 
-    public String getFielId() {
-        return fielId;
+    public String getfileId() {
+        return fileId;
     }
 
-    public void setFielId(String fielId) {
-        this.fielId = fielId;
+    public void setfileId(String fileId) {
+        this.fileId = fileId;
     }
 
     public String getFileRealUrl() {

@@ -93,6 +93,4 @@
            android:id="@+id/imageContent"/>
     </LinearLayout>
 
-
-
 </RelativeLayout>

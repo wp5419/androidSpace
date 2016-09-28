@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.Application;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -22,6 +23,8 @@ import org.xutils.view.annotation.Event;
 import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;
 
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -32,6 +35,7 @@ import java.util.logging.Logger;
 public class Main extends Activity{
     String requestUrl = GlobalParam.TEST_URL;
     public  FileInfo file;
+    public List<FileInfo> fileList = new ArrayList<FileInfo>();
     @ViewInject(R.id.weather)
     private Button ss;
     @Override
@@ -49,9 +53,11 @@ public class Main extends Activity{
     private void onWeatherClick(View view){
         Intent intent = new Intent();
         Bundle bundle =new Bundle();
-        bundle.putSerializable("fileInfo",file);
+        //bundle.putSerializable("fileInfo",file);
+       // bundle.putParcelableArrayList("fileList",this.fileList);
+        bundle.putSerializable("fileList",(Serializable)fileList);
         intent.putExtras(bundle);
-        intent.setClass(this,FileInfoActivity.class);
+        intent.setClass(this,ListViewActivity.class);
         startActivity(intent);
       /*  bindService();
         unbindService();*/
@@ -74,10 +80,10 @@ public class Main extends Activity{
             public void onSuccess(String result) {
                 Result r = JSON.parseObject(result, Result.class);
                 List<FileInfo> resultList = r.getResObjs();
-                if(!resultList.isEmpty()){
+               /* if(!resultList.isEmpty()){
                     file = resultList.get(1);
-                }
-
+                }*/
+                fileList = resultList;
             }
 
             @Override
