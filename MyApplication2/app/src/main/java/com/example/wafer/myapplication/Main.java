@@ -12,7 +12,6 @@ import android.widget.TextView;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.api.global.GlobalParam;
-import com.app.dbUtils.SqlLiteHelper;
 import com.app.model.FileInfo;
 import com.app.model.Result;
 
@@ -35,9 +34,8 @@ import java.util.logging.Logger;
 //@ContentView(R.layout.layout)
 public class Main extends Activity{
     String requestUrl = GlobalParam.TEST_URL;
-    private  FileInfo file;
-    private List<FileInfo> fileList = new ArrayList<FileInfo>();
-    private  SqlLiteHelper sql;
+    public  FileInfo file;
+    public List<FileInfo> fileList = new ArrayList<FileInfo>();
     @ViewInject(R.id.weather)
     private Button ss;
     @Override
@@ -47,7 +45,6 @@ public class Main extends Activity{
         x.Ext.init(getApplication());
         x.view().inject(this);
         Application app = getApplication();
-        sql = new SqlLiteHelper(this);
         getFileInfo();
     }
 
@@ -86,24 +83,12 @@ public class Main extends Activity{
                /* if(!resultList.isEmpty()){
                     file = resultList.get(1);
                 }*/
-                //和数据库中的数据进行比对，存在即插入
-                List<FileInfo> dbList = sql.queryFile();
-                if(dbList.isEmpty()){
-                    for (FileInfo file: resultList) {
-                        sql.insert(file.getfileId(),file.getFileName(),file.getUpLoader(),file.getSize(),file.getFileUrl());
-                    }
-                }else{
-                 /*   resultList.removeAll(dbList);
-                    for (FileInfo file: resultList) {
-                        sql.insert(file.getfileId(),file.getFileName(),file.getUpLoader(),file.getSize(),file.getFileUrl());
-                    }*/
-                }
-                fileList = sql.queryFile();
+                fileList = resultList;
             }
 
             @Override
             public void onError(Throwable ex, boolean isOnCallback) {
-                fileList = sql.queryFile();
+                System.out.print("error");
             }
 
             @Override
